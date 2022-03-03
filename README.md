@@ -1,19 +1,39 @@
-# vue-firebase-products-app
+# Products App
 
-## Project setup
+## Simple Crud application
+
+## Techstack
+
+- `Vue`
+- `Javascript`
+- `Firebase`
+
+## Requirements
+
+- install `node`
+
+## Usage
+
+### Clone repository
+
 ```
-npm install
+git clone repo
 ```
 
-### Compiles and hot-reloads for development
+### Navigate to project
+
+```
+cd /path/to/project
+```
+
+### Install dependencies
+
+```
+npm i
+```
+
+### Run application
+
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
