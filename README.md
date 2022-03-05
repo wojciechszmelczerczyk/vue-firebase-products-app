@@ -38,6 +38,29 @@ const firebaseConfig = {
 };
 ```
 
+## Services
+
+### Fetch all products
+
+```javascript
+let tmpProducts = [];
+onSnapshot(productsColRef, (snapshot) => {
+  snapshot.docs.forEach((doc) => {
+    tmpProducts.push({ ...doc.data(), id: doc.id });
+  });
+  // assign products to reactive variable
+  products.value = tmpProducts;
+});
+```
+
+### Fetch product with specific id
+
+```javascript
+onSnapshot(docRef, (snapshot) => {
+  product.value = snapshot.data();
+});
+```
+
 ## Usage
 
 ### Clone repository
@@ -74,7 +97,11 @@ npm run serve
 
 ### User
 
-| Endpoint      |   Component    | Action                                       |
-| :------------ | :------------: | :------------------------------------------- |
-| /products     |  ProductsList  | Returns products of currently logged in user |
+| Endpoint      | Component      | Action                                       |
+| :------------ | :------------- | :------------------------------------------- |
+| /products     | ProductsList   | Returns products of currently logged in user |
 | /products/:id | ProductDetails | Returns info about specific product          |
+
+## App architecture
+
+[![](https://mermaid.ink/img/pako:eNo1jksOgzAMRK9ieQ0XyKISlPYCrdQFYeESU6KSBIWwQMDd6_68Go3ePHnFNhhGhY9IYw_XSnuQK-rjYNknuPG9gTw_wNZxanswlGiDsj7byFMKkZvPoPwy0o3BT7xBgRk6jo6sEfn6hjSmnh1rVBINxadG7Xfh5lGsfDJWfKg6GibOkOYULotvUaU48x-qLMmj7kftL-nDP1k)](https://mermaid.live/edit#pako:eNo1jksOgzAMRK9ieQ0XyKISlPYCrdQFYeESU6KSBIWwQMDd6_68Go3ePHnFNhhGhY9IYw_XSnuQK-rjYNknuPG9gTw_wNZxanswlGiDsj7byFMKkZvPoPwy0o3BT7xBgRk6jo6sEfn6hjSmnh1rVBINxadG7Xfh5lGsfDJWfKg6GibOkOYULotvUaU48x-qLMmj7kftL-nDP1k)

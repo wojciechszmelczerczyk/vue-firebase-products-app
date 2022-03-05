@@ -3,22 +3,24 @@
     <p>Loading...</p>
   </div>
   <div class="home" v-for="product in products" :key="product.id">
-    <p>{{ product.quantity }}</p>
-    <p>{{ product.model }}</p>
-    <p>{{ product.name }}</p>
-    <p>{{ product.price }}</p>
+    <router-link :to="{ path: `/products/${product.id}` }">
+      {{ product.name }}/{{ product.price }}/{{ product.quantity }}
+    </router-link>
   </div>
 </template>
 
 <script>
+// import ProductDetails from "../views/ProductDetails.vue";s
 // @ is an alias to /src
 // import ProductService from "../composables/ProductService";
-import { onMounted, reactive, ref } from "@vue/runtime-core";
+import { onMounted, ref } from "@vue/runtime-core";
 import { db } from "../firebaseConfig";
 import { onSnapshot, collection } from "firebase/firestore";
 export default {
   name: "HomeView",
-
+  // components: {
+  //   ProductDetails,
+  // },
   setup() {
     // products
     const products = ref([]);
@@ -41,3 +43,5 @@ export default {
   },
 };
 </script>
+
+<style scoped></style>
