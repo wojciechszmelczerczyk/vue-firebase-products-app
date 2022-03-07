@@ -1,18 +1,29 @@
 // import firebase config
-import { db } from "../firebaseConfig";
-import { onSnapshot, collection } from "firebase/firestore";
-
-const productsColRef = collection(db, "products");
+import { getDocs, query, where } from "firebase/firestore";
 
 export default {
-  // get all products
-  getProducts() {
+  async getProducts(colRef, refVar) {
+    // get documents
+    const querySnapshot = await getDocs(colRef);
+    // tmp variable
     let products = [];
-    onSnapshot(productsColRef, (snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        products.push({ ...doc.data(), id: doc.id });
-      });
+    // iterate on data
+    querySnapshot.forEach((doc) => {
+      products.push({ ...doc.data(), id: doc.id });
     });
+    // set reference variable to be equal data from firestore
+    refVar.value = products;
     return products;
+  },
+  async getProductsByCategory(category, productsVar, colRef) {
+    // query data by specific category
+    const q = query(colRef, where("category", "==", category.value));
+    const querySnapshot = await getDocs(q);
+    // tmp variable
+    let products = [];
+    querySnapshot.forEach((doc) => {
+      products.push({ ...doc.data(), id: doc.id });
+    });
+    productsVar.value = products;
   },
 };
