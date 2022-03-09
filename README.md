@@ -97,10 +97,10 @@ npm run serve
 
 ### User
 
-| Endpoint      | Component      | Action                                       |
-| :------------ | :------------- | :------------------------------------------- |
-| /products     | ProductsList   | Returns products of currently logged in user |
-| /products/:id | ProductDetails | Returns info about specific product          |
+| Endpoint      | Component      | Action                              |
+| :------------ | :------------- | :---------------------------------- |
+| /products     | ProductsList   | Returns all products                |
+| /products/:id | ProductDetails | Returns info about specific product |
 
 ## App architecture
 
