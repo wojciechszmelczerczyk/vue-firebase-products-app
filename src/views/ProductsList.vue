@@ -22,7 +22,7 @@
 <script setup>
 import ProductService from "../composables/ProductService";
 import { db } from "../firebaseConfig";
-import { computed, onMounted, ref } from "@vue/runtime-core";
+import { onMounted, ref } from "@vue/runtime-core";
 import { collection } from "firebase/firestore";
 
 // products var
@@ -41,7 +41,6 @@ const productsColRef = collection(db, "products");
 onMounted(async () => {
   await ProductService.getProducts(productsColRef, products);
 });
-// TODO: access products.value outside the hook scope
 
 // query data with specific category
 const fetchDataByCategory = async () => {
@@ -51,10 +50,6 @@ const fetchDataByCategory = async () => {
     productsColRef
   );
 };
-// get products which match input and chosen category
-// const productsByName = computed(() => {
-//   return products.value.filter((prod) => prod.includes(search.value));
-// });
 </script>
 
 <style scoped></style>

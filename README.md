@@ -14,28 +14,15 @@
 
 ## Environment variables
 
-### Setup env variables
+### Setup env variables for firebase
 
 ```javascript
-API_KEY = "your api key";
-AUTH_DOMAIN = "your auth domain";
-PROJECT_ID = "your project id";
-STORAGE_BUCKET = "your storage bucket";
-MESSAGING_SENDER_ID = "your messaging sender id";
-APP_ID = "your app id";
-```
-
-### Firebase configuration
-
-```javascript
-const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-};
+API_KEY = "your-api-key";
+AUTH_DOMAIN = "your-auth-domain";
+PROJECT_ID = "your-project-id";
+STORAGE_BUCKET = "your-storage-bucket";
+MESSAGING_SENDER_ID = "your-messaging-sender-id";
+APP_ID = "your-app-id";
 ```
 
 ## Services
