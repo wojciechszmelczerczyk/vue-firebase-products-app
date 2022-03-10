@@ -4,6 +4,7 @@
   </div>
   <form>
     <select v-model="category" @change="fetchDataByCategory">
+      <option value="">All</option>
       <option value="garden">Garden</option>
       <option value="house">House</option>
       <option value="sport">Sport</option>

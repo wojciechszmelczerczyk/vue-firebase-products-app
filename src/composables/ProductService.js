@@ -17,7 +17,9 @@ export default {
   },
   async getProductsByCategory(category, productsVar, colRef) {
     // query data by specific category
-    const q = query(colRef, where("category", "==", category.value));
+    let q = category.value
+      ? query(colRef, where("category", "==", category.value))
+      : colRef;
     const querySnapshot = await getDocs(q);
     // tmp variable
     let products = [];
