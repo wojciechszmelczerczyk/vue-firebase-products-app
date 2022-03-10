@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ProductsList from "../views/ProductsList.vue";
 import ProductDetails from "../views/ProductDetails.vue";
+import UsersList from "../views/admin/users/UsersList.vue";
+import CreateUser from "../views/admin/users/CreateUser.vue";
 
 const routes = [
   {
@@ -13,6 +15,8 @@ const routes = [
     name: "ProductDetails",
     component: ProductDetails,
   },
+  { path: "/users", name: "UsersList", component: UsersList },
+  { path: "/users/create", name: "CreateUser", component: CreateUser },
 ];
 
 const router = createRouter({

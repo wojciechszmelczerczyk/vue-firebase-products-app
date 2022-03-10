@@ -1,5 +1,9 @@
 <template>
-  <nav><router-link to="/products">Home</router-link></nav>
+  <nav>
+    <router-link to="/products">Home</router-link>
+    <router-link to="/users">users</router-link>
+  </nav>
+
   <router-view />
 </template>
 
