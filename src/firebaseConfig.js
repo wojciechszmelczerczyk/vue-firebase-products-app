@@ -6,8 +6,8 @@ import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "your-api-key",
   authDomain: "your-auth-domain",
-  projectId: "vue-firebase-crud-app-60181",
-  storageBucket: "your-project-id",
+  projectId: "your_project_id",
+  storageBucket: "your_storage_bucket",
   messagingSenderId: "your-messaging-sender-id",
   appId: "your-app-id",
 };

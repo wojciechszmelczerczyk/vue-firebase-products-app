@@ -20,7 +20,8 @@ const email = ref(null);
 const password = ref(null);
 
 // create new user
-const createNewUser = async () => {
+const createNewUser = async (e) => {
+  e.preventDefault();
   await UserService.createUser(authenticate, email.value, password.value);
 };
 </script>

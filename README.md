@@ -88,6 +88,7 @@ npm run serve
 | :------------ | :------------- | :---------------------------------- |
 | /products     | ProductsList   | Returns all products                |
 | /products/:id | ProductDetails | Returns info about specific product |
+| /login        | Login          | Login with correct credentials      |
 
 ### Admin
 
