@@ -4,6 +4,9 @@
     <input v-model="email" />
     <label>Password</label>
     <input type="password" v-model="password" />
+    <router-link :to="{ path: '/users' }">
+      <button @click="cancel">Cancel</button>
+    </router-link>
     <button @click="createNewUser">Create user</button>
   </form>
 </template>
