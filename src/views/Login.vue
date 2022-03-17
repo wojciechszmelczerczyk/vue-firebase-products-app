@@ -14,6 +14,7 @@
 import { authenticate } from "../firebaseConfig";
 import UserService from "../composables/UserService";
 import { reactive, ref } from "@vue/runtime-core";
+import { useRouter } from "vue-router";
 
 // catch email
 const email = ref(null);
@@ -23,6 +24,9 @@ const password = ref(null);
 
 // errors
 const errors = reactive({ email: null, password: null });
+
+// router
+const router = useRouter();
 
 // try to login user, if credentials wrong display error message
 const loginUser = async (e) => {
@@ -35,6 +39,7 @@ const loginUser = async (e) => {
     );
     const token = res.user.accessToken;
     localStorage.setItem("token", token);
+    router.push("/products");
   } catch (err) {
     // clean input after submit
     email.value = password.value = "";
