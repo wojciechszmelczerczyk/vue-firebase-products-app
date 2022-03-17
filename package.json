@@ -22,6 +22,7 @@
     "url": "^0.11.0",
     "util": "^0.12.4",
     "vue": "^3.2.13",
+    "vue-cli": "^2.9.6",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
