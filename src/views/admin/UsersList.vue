@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import ManageUsersService from "../../../composables/admin/ManageUsersService";
+import ManageUsersService from "../../composables/admin/ManageUsersService";
 const { onMounted, ref } = require("@vue/runtime-core");
 
 // users variable
