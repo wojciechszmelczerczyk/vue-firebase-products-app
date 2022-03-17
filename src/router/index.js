@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ProductsList from "../views/ProductsList.vue";
 import ProductDetails from "../views/ProductDetails.vue";
-import UsersList from "../views/admin/UsersList.vue";
-import CreateUser from "../views/admin/CreateUser.vue";
+import UsersList from "../views/admin/users/UsersList.vue";
+import CreateUser from "../views/admin/users/CreateUser.vue";
 import Login from "../views/Login.vue";
 
 const routes = [

@@ -12,9 +12,9 @@
 </template>
 
 <script setup>
-import ManageUsersService from "../../composables/admin/ManageUsersService";
+import ManageUsersService from "../../../composables/admin/ManageUsersService";
 import { ref } from "@vue/runtime-core";
-import { authenticate } from "../../firebaseConfig";
+import { authenticate } from "../../../firebaseConfig";
 import { useRouter } from "vue-router";
 
 // catch email from form input

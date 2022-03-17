@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore";
 
 // firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBMvczw56wA71tlf66M1YfwU5iT_BwjbXQ",
-  authDomain: "vue-firebase-crud-app-60181.firebaseapp.com",
-  projectId: "vue-firebase-crud-app-60181",
-  storageBucket: "vue-firebase-crud-app-60181.appspot.com",
-  messagingSenderId: "148760643940",
-  appId: "1:148760643940:web:daac5ce6b2b235cd3c5271",
+  apiKey: "your-api-key",
+  authDomain: "your-auth-domain",
+  projectId: "your-project-id",
+  storageBucket: "your-storage-bucket",
+  messagingSenderId: "your-messaging-sender-id",
+  appId: "your-app-id",
 };
 
 // initialize app with firebase config
