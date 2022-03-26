@@ -16,6 +16,7 @@
 
 - [App Architecture](#app-architecture)
 - [Database Architecture](#database-architecture)
+- [JWT middleware](#verify-token-middleware)
 - [Endpoints](#router)
 
   - User
@@ -109,6 +110,44 @@ npm run serve
 | `/users/create` | CreateUser |      \*       | Create new user |
 
 <br />
+
+### Verify token middleware
+
+#### Before each route except login.
+
+#### Verify token by decoding from cookie email credential and check if user with such email exists in database.
+
+```javascript
+async verifyToken(to, from, next) {
+    // no auth for login path
+    if (to.path === "/login") {
+      next();
+      // otherwise verify token
+    } else {
+      // fetch token from cookie
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        // intercept email from token
+        const { email } = await decode(token);
+
+        // fetch user from db with email from token if exists ok, otherwise error
+        const isCorrect = await ManageUsersService.default.getUserByEmail(
+          email
+        );
+
+        if (isCorrect) {
+          next();
+        } else {
+          next("/login");
+        }
+      } else {
+        next("/login");
+      }
+    }
+  }
+
+```
 
 ### Login
 
