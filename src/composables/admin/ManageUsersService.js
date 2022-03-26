@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "../../firebaseConfig";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
 export default {
   async createUser(auth, email, password) {
@@ -28,5 +28,18 @@ export default {
     });
 
     usersRef.value = usersTmp;
+  },
+  async getUserByEmail(email) {
+    const usersColl = await collection(db, "users");
+
+    let q = query(usersColl, where("email", "==", email));
+
+    const user = await getDocs(q);
+
+    const [currentUser] = user.docs.map((doc) => doc.data());
+
+    const isEqual = email === currentUser.email;
+
+    return isEqual;
   },
 };
