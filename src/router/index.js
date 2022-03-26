@@ -5,6 +5,7 @@ import UsersList from "../views/admin/UsersList.vue";
 import CreateUser from "../views/admin/CreateUser.vue";
 import Login from "../views/Login.vue";
 
+import { verifyToken } from "../middleware/verifyToken";
 const routes = [
   {
     path: "/products",
@@ -25,5 +26,8 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+// jwt middleware
+router.beforeEach(verifyToken);
 
 export default router;
