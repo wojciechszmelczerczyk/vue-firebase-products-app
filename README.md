@@ -16,7 +16,9 @@
 
 - [App Architecture](#app-architecture)
 - [Database Architecture](#database-architecture)
-- [JWT middleware](#verify-token-middleware)
+- Middlewares
+  - [JWT middleware](#verify-token-middleware)
+  - [Admin middleware](#verify-admin-middleware)
 - [Endpoints](#router)
 
   - User
@@ -147,6 +149,51 @@ async verifyToken(to, from, next) {
     }
   }
 
+```
+
+### Verify admin middleware
+
+#### Verify if user have admin permission.
+
+```javascript
+async isAdmin(to, from, next) {
+    // fetch token from cookie
+    const token = localStorage.getItem("token");
+
+    // intercept role from decoded token
+    const { email } = await decode(token);
+
+    const user = await ManageUsersService.default.getUserByEmail(email);
+
+    const isAdmin = user[1].isAdmin;
+
+    // if admin next
+    if (isAdmin) {
+      next();
+
+      // otherwise prompt na error
+    } else {
+      throw new Error("You are not allowed. No admin permission");
+    }
+  },d
+
+```
+
+#### Admin middleware apply to following routes:
+
+```javascript
+{
+    path: "/users",
+    name: "UsersList",
+    component: UsersList,
+    beforeEnter: isAdmin,
+  },
+  {
+    path: "/users/create",
+    name: "CreateUser",
+    component: CreateUser,
+    beforeEnter: isAdmin,
+  },
 ```
 
 ### Login
