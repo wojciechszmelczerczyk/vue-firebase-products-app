@@ -12,10 +12,10 @@ module.exports = {
 
     const user = await ManageUsersService.default.getUserByEmail(email);
 
-    const role = user[1].role;
+    const isAdmin = user[1].isAdmin;
 
     // if admin next
-    if (role === "admin") {
+    if (isAdmin) {
       next();
 
       // otherwise prompt na error
