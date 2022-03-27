@@ -1,4 +1,5 @@
 <template>
+  <Navbar />
   <div v-if="!product">
     <p>Loading...</p>
   </div>
@@ -12,6 +13,7 @@ import { onMounted, ref } from "@vue/runtime-core";
 import { useRoute } from "vue-router";
 import { db } from "../firebaseConfig";
 import { onSnapshot, doc } from "firebase/firestore";
+import Navbar from "../components/Navbar";
 
 // catch request id parameter
 const route = useRoute();
