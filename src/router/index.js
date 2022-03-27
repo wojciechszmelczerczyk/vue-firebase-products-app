@@ -6,6 +6,8 @@ import CreateUser from "../views/admin/CreateUser.vue";
 import Login from "../views/Login.vue";
 
 import { verifyToken } from "../middleware/verifyToken";
+import { isAdmin } from "../middleware/isAdmin";
+
 const routes = [
   {
     path: "/products",
@@ -18,8 +20,18 @@ const routes = [
     component: ProductDetails,
   },
   { path: "/login", name: "Login", component: Login },
-  { path: "/users", name: "UsersList", component: UsersList },
-  { path: "/users/create", name: "CreateUser", component: CreateUser },
+  {
+    path: "/users",
+    name: "UsersList",
+    component: UsersList,
+    beforeEnter: isAdmin,
+  },
+  {
+    path: "/users/create",
+    name: "CreateUser",
+    component: CreateUser,
+    beforeEnter: isAdmin,
+  },
 ];
 
 const router = createRouter({

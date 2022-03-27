@@ -16,7 +16,7 @@ module.exports = {
         const { email } = await decode(token);
 
         // fetch user from db with email from token if exists ok, otherwise error
-        const isCorrect = await ManageUsersService.default.getUserByEmail(
+        const [isCorrect] = await ManageUsersService.default.getUserByEmail(
           email
         );
 

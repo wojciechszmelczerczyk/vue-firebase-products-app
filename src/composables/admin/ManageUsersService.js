@@ -40,6 +40,6 @@ export default {
 
     const isEqual = email === currentUser.email;
 
-    return isEqual;
+    return [isEqual, currentUser];
   },
 };
