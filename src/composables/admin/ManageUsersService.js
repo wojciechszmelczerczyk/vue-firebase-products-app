@@ -13,7 +13,7 @@ export default {
     const newUser = await addDoc(usersColl, {
       email,
       uuid: res.user.uid,
-      role: "user",
+      isAdmin: false,
     });
   },
   async getUsers(usersRef) {

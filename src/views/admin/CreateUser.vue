@@ -1,4 +1,5 @@
 <template>
+  <Navbar />
   <form>
     <label>Email</label>
     <input v-model="email" />
@@ -16,6 +17,7 @@ import ManageUsersService from "../../composables/admin/ManageUsersService";
 import { ref } from "@vue/runtime-core";
 import { authenticate } from "../../firebaseConfig";
 import { useRouter } from "vue-router";
+import Navbar from "../../components/Navbar";
 
 // catch email from form input
 const email = ref(null);

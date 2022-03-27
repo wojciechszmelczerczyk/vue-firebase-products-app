@@ -1,4 +1,5 @@
 <template>
+  <Navbar />
   <router-link :to="{ path: '/users/create' }">Create user</router-link>
   <h1>Users list</h1>
   <div class="home" v-for="user in users" :key="user.id">
@@ -8,6 +9,7 @@
 
 <script setup>
 import ManageUsersService from "../../composables/admin/ManageUsersService";
+import Navbar from "../../components/Navbar";
 const { onMounted, ref } = require("@vue/runtime-core");
 
 // users variable

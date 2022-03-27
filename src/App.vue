@@ -1,13 +1,6 @@
 <template>
-  <nav>
-    <router-link to="/products">Products</router-link>
-    <router-link to="/users">Users</router-link>
-  </nav>
-
   <router-view />
 </template>
-
-<script setup></script>
 
 <style>
 #app {
