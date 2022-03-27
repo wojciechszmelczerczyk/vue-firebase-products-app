@@ -1,4 +1,5 @@
 <template>
+  <Navbar />
   <div v-if="!products">
     <p>Loading...</p>
   </div>
@@ -24,6 +25,7 @@ import ProductService from "../composables/ProductService";
 import { db } from "../firebaseConfig";
 import { onMounted, ref } from "@vue/runtime-core";
 import { collection } from "firebase/firestore";
+import Navbar from "../components/Navbar";
 
 // products var
 let products = ref([]);
@@ -36,6 +38,9 @@ const category = ref(null);
 
 // products collection reference
 const productsColRef = collection(db, "products");
+
+// admin flag
+const isAdmin = ref(true);
 
 // when component mounted, fetch products
 onMounted(async () => {
