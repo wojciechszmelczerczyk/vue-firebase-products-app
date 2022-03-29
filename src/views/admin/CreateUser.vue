@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar :isAdmin="isAdmin" />
   <form>
     <label>Email</label>
     <input v-model="email" />
@@ -14,10 +14,11 @@
 
 <script setup>
 import ManageUsersService from "../../composables/admin/ManageUsersService";
-import { ref } from "@vue/runtime-core";
+import { onMounted, ref } from "@vue/runtime-core";
 import { authenticate } from "../../firebaseConfig";
 import { useRouter } from "vue-router";
 import Navbar from "../../components/Navbar";
+import decode from "jsonwebtoken/decode";
 
 // catch email from form input
 const email = ref(null);
@@ -27,6 +28,17 @@ const password = ref(null);
 
 // router
 const router = useRouter();
+
+// is admin
+const isAdmin = ref(false);
+
+onMounted(async () => {
+  // get user permission
+  const token = localStorage.getItem("token");
+  const { email } = await decode(token);
+  const currentUser = await ManageUsersService.getUserByEmail(email);
+  isAdmin.value = currentUser[1].isAdmin;
+});
 
 // create new user
 const createNewUser = async (e) => {

@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar :isAdmin="isAdmin" />
   <div v-if="!products">
     <p>Loading...</p>
   </div>
@@ -26,6 +26,8 @@ import { db } from "../firebaseConfig";
 import { onMounted, ref } from "@vue/runtime-core";
 import { collection } from "firebase/firestore";
 import Navbar from "../components/Navbar";
+import ManageUsersService from "@/composables/admin/ManageUsersService";
+import decode from "jsonwebtoken/decode";
 
 // products var
 let products = ref([]);
@@ -40,11 +42,16 @@ const category = ref(null);
 const productsColRef = collection(db, "products");
 
 // admin flag
-const isAdmin = ref(true);
+const isAdmin = ref(false);
 
-// when component mounted, fetch products
 onMounted(async () => {
+  // fetch all products from database
   await ProductService.getProducts(productsColRef, products);
+
+  const token = localStorage.getItem("token");
+  const { email } = await decode(token);
+  const currentUser = await ManageUsersService.getUserByEmail(email);
+  isAdmin.value = currentUser[1].isAdmin;
 });
 
 // query data with specific category
