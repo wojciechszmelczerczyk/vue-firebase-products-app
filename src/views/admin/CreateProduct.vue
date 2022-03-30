@@ -72,7 +72,7 @@ const addProduct = async (e) => {
 
 const cancel = (e) => {
   e.preventDefault();
-  router.push("/manage-products");
+  router.push("/products");
 };
 </script>
 

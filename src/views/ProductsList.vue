@@ -3,6 +3,7 @@
   <div v-if="!products">
     <p>Loading...</p>
   </div>
+  <a v-if="isAdmin" href="/products/add">Add product</a>
   <form>
     <select v-model="category" @change="fetchDataByCategory">
       <option value="">All</option>
@@ -16,6 +17,10 @@
     <router-link :to="{ path: `/products/${product.id}` }">
       {{ product.name }}/{{ product.price }}/{{ product.quantity }}
     </router-link>
+    <router-link v-if="isAdmin" :to="{ path: `/products/update/${product.id}` }"
+      >Edit</router-link
+    >
+    <button v-if="isAdmin" @click="deleteProduct(product.id)">Delete</button>
   </div>
 </template>
 
@@ -23,7 +28,7 @@
 import ProductService from "../composables/ProductService";
 import { db } from "../firebaseConfig";
 import { onMounted, ref } from "@vue/runtime-core";
-import { collection } from "firebase/firestore";
+import { collection, deleteDoc, doc } from "firebase/firestore";
 import Navbar from "../components/Navbar";
 import ManageUsersService from "@/composables/admin/ManageUsersService";
 import decode from "jsonwebtoken/decode";
@@ -60,6 +65,11 @@ const fetchDataByCategory = async () => {
     products,
     productsColRef
   );
+};
+
+const deleteProduct = async (id) => {
+  const docRef = doc(db, "products", id);
+  await deleteDoc(docRef);
 };
 </script>
 

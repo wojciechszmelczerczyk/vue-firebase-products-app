@@ -6,9 +6,7 @@ import CreateUser from "../views/admin/CreateUser.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 
-import ManageProducts from "../views/admin/ManageProducts.vue";
 import CreateProduct from "../views/admin/CreateProduct.vue";
-import UpdateProducts from "../views/admin/UpdateProducts.vue";
 import UpdateProduct from "../views/admin/UpdateProduct.vue";
 
 import { verifyToken } from "../middleware/verifyToken";
@@ -40,26 +38,16 @@ const routes = [
     component: CreateUser,
     beforeEnter: isAdmin,
   },
+
   {
-    path: "/manage-products",
-    name: "ManageProducts",
-    component: ManageProducts,
-    beforeEnter: isAdmin,
-  },
-  {
-    path: "/manage-products/create",
+    path: "/products/add",
     name: "CreateProduct",
     component: CreateProduct,
     beforeEnter: isAdmin,
   },
+
   {
-    path: "/manage-products/update",
-    name: "UpdateProducts",
-    component: UpdateProducts,
-    beforeEnter: isAdmin,
-  },
-  {
-    path: "/manage-products/update/:id",
+    path: "/products/update/:id",
     name: "UpdateProduct",
     component: UpdateProduct,
     beforeEnter: isAdmin,

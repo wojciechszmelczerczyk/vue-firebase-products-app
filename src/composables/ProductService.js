@@ -1,5 +1,12 @@
 // import firebase config
-import { getDocs, collection, query, where, addDoc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  query,
+  where,
+  addDoc,
+  onSnapshot,
+} from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export default {
@@ -20,16 +27,18 @@ export default {
   },
   async getProducts(colRef, refVar) {
     // get documents
-    const querySnapshot = await getDocs(colRef);
-    // tmp variable
-    let products = [];
-    // iterate on data
-    querySnapshot.forEach((doc) => {
-      products.push({ ...doc.data(), id: doc.id });
+    const q = query(colRef);
+    onSnapshot(q, (querySnapshot) => {
+      // tmp variable
+      let products = [];
+      // iterate on data
+      querySnapshot.forEach((doc) => {
+        products.push({ ...doc.data(), id: doc.id });
+      });
+      refVar.value = products;
+      return products;
     });
     // set reference variable to be equal data from firestore
-    refVar.value = products;
-    return products;
   },
   async getProductsByCategory(category, productsVar, colRef) {
     // query data by specific category

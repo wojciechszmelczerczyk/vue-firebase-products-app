@@ -3,9 +3,7 @@
     <router-link to="/products">Products</router-link>
     <!-- if user is admin display routerlink -->
     <router-link v-if="isAdmin" to="/users">Users</router-link>
-    <router-link v-if="isAdmin" to="/manage-products"
-      >Products Managment</router-link
-    >
+
     <router-link to="/logout">Logout</router-link>
   </nav>
 </template>
