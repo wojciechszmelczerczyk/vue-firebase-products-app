@@ -4,6 +4,8 @@ import ProductDetails from "../views/ProductDetails.vue";
 import UsersList from "../views/admin/UsersList.vue";
 import CreateUser from "../views/admin/CreateUser.vue";
 import Login from "../views/Login.vue";
+import Logout from "../views/Logout.vue";
+
 import ManageProducts from "../views/admin/ManageProducts.vue";
 import CreateProduct from "../views/admin/CreateProduct.vue";
 import UpdateProducts from "../views/admin/UpdateProducts.vue";
@@ -24,6 +26,8 @@ const routes = [
     component: ProductDetails,
   },
   { path: "/login", name: "Login", component: Login },
+  { path: "/logout", name: "Logout", component: Logout },
+
   {
     path: "/users",
     name: "UsersList",

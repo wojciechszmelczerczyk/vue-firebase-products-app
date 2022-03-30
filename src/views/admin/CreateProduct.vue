@@ -1,4 +1,5 @@
 <template>
+  <Navbar :isAdmin="isAdmin" />
   <form>
     <label>Name: </label>
     <input v-model="name" />
@@ -21,6 +22,7 @@
     <textarea v-model="info"></textarea>
     <label>model</label>
     <input v-model="model" />
+    <button @click="cancel">Cancel</button>
     <button @click="addProduct">Add product</button>
   </form>
 </template>
@@ -28,8 +30,11 @@
 <script setup>
 import ProductService from "../../composables/ProductService.js";
 
-import { ref, watchEffect } from "@vue/runtime-core";
+import { ref, onMounted } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
+import Navbar from "../../components/Navbar.vue";
+import ManageUsersService from "@/composables/admin/ManageUsersService";
+import decode from "jsonwebtoken/decode";
 
 const name = ref(null);
 const price = ref(null);
@@ -42,8 +47,13 @@ const model = ref(null);
 // router
 const router = useRouter();
 
-watchEffect(() => {
-  console.log(name.value);
+const isAdmin = ref(false);
+
+onMounted(async () => {
+  const token = localStorage.getItem("token");
+  const { email } = await decode(token);
+  const currentUser = await ManageUsersService.getUserByEmail(email);
+  isAdmin.value = currentUser[1].isAdmin;
 });
 
 const addProduct = async (e) => {
@@ -58,6 +68,11 @@ const addProduct = async (e) => {
     model.value
   );
   router.push("/products");
+};
+
+const cancel = (e) => {
+  e.preventDefault();
+  router.push("/manage-products");
 };
 </script>
 
