@@ -1,7 +1,25 @@
 // import firebase config
-import { getDocs, query, where } from "firebase/firestore";
+import { getDocs, collection, query, where, addDoc } from "firebase/firestore";
+import { db } from "../firebaseConfig";
 
 export default {
+  async createProduct(name, price, quantity, state, category, info, model) {
+    const colRef = await collection(db, "products");
+
+    const product = {
+      name,
+      price,
+      quantity,
+      state,
+      category,
+      info,
+      model,
+    };
+
+    console.log(2);
+    const x = await addDoc(colRef, product);
+    console.log(2);
+  },
   async getProducts(colRef, refVar) {
     // get documents
     const querySnapshot = await getDocs(colRef);
