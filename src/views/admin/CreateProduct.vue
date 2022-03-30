@@ -14,8 +14,8 @@
     </select>
     <label>Category</label>
     <select v-model="category">
-      <option>Garden</option>
-      <option>House</option>
+      <option>garden</option>
+      <option>house</option>
     </select>
     <label>Info: </label>
     <textarea v-model="info"></textarea>

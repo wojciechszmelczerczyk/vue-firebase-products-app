@@ -12,7 +12,6 @@
     </select>
     <input class="filter" v-model="search" />
   </form>
-  <h1>Category: {{ search }}</h1>
   <div class="home" v-for="product in products" :key="product.id">
     <router-link :to="{ path: `/products/${product.id}` }">
       {{ product.name }}/{{ product.price }}/{{ product.quantity }}
