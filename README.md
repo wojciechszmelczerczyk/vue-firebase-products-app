@@ -28,6 +28,7 @@
 
   - Admin
     - [Users](#users)
+    - [Products](#admin-can-create-new-products)
 
 ## Techstack
 
@@ -194,6 +195,24 @@ async isAdmin(to, from, next) {
     component: CreateUser,
     beforeEnter: isAdmin,
   },
+  {
+    path: "/manage-products",
+    name: "ManageProducts",
+    component: ManageProducts,
+    beforeEnter: isAdmin,
+  },
+  {
+    path: "/manage-products/create",
+    name: "CreateProduct",
+    component: CreateProduct,
+    beforeEnter: isAdmin,
+  },
+  {
+    path: "/manage-products/update",
+    name: "UpdateProducts",
+    component: UpdateProducts,
+    beforeEnter: isAdmin,
+  },
 ```
 
 ### Login
@@ -319,5 +338,25 @@ async createUser(auth, email, password) {
       uuid: res.user.uid,
       role: "user",
     });
+  },
+```
+
+#### Admin can create new products.
+
+```javascript
+async createProduct(name, price, quantity, state, category, info, model) {
+    const colRef = await collection(db, "products");
+
+    const product = {
+      name,
+      price,
+      quantity,
+      state,
+      category,
+      info,
+      model,
+    };
+
+    await addDoc(colRef, product);
   },
 ```

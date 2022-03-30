@@ -16,9 +16,7 @@ export default {
       model,
     };
 
-    console.log(2);
-    const x = await addDoc(colRef, product);
-    console.log(2);
+    await addDoc(colRef, product);
   },
   async getProducts(colRef, refVar) {
     // get documents
