@@ -30,7 +30,8 @@
 
   - Admin
     - [Users](#users)
-    - [Products](#admin-can-create-new-products)
+    - [Create products](#admin-can-create-new-products)
+    - [Update products](#admin-can-update-products)
 
 ## Techstack
 
@@ -89,7 +90,7 @@ npm run serve
 
 [![](https://mermaid.ink/img/pako:eNp1kDEOwjAMRa8SeeYEmWFgQ-qaxUrSEtE44DhDVfXuuFCQQKon678v-9sz-BIiWPAj1npMODBmR0brpZgLl9C81FUxb_CVrOmEEw3Go8Sh8LTHs-4Yf-GXEeb4j86k8yKbOye_Cx8NSZJM__xELZsqGmlnY6K-OIID5MgZU9Dr59XqQK5Rw4DVNiDfHDha1NfuQaedQpLCYHscazwANindRB6scIsf0_bBzbU8AUI6d68)](https://mermaid.live/edit#pako:eNp1kDEOwjAMRa8SeeYEmWFgQ-qaxUrSEtE44DhDVfXuuFCQQKon678v-9sz-BIiWPAj1npMODBmR0brpZgLl9C81FUxb_CVrOmEEw3Go8Sh8LTHs-4Yf-GXEeb4j86k8yKbOye_Cx8NSZJM__xELZsqGmlnY6K-OIID5MgZU9Dr59XqQK5Rw4DVNiDfHDha1NfuQaedQpLCYHscazwANindRB6scIsf0_bBzbU8AUI6d68)
 
-[![](https://mermaid.ink/img/pako:eNptjzsOAjEMRK8Sud4TpIYTrOjcWLHZjcgHOUmBVnt3sh8QBa48b0bWeAGXWcCCC1TKxdOkFDGZPjsxtyJaNmkOemhrxqo-TUYi-fDXac3zj_HlmoPsHBMMEEX7Be4Flg0i1FmiINi-MukDAdPac-3JVOXKvmYFe6dQZABqNY-v5MBWbfIJnU-cqfUNUvFKyw)](https://mermaid.live/edit#pako:eNptjzsOAjEMRK8Sud4TpIYTrOjcWLHZjcgHOUmBVnt3sh8QBa48b0bWeAGXWcCCC1TKxdOkFDGZPjsxtyJaNmkOemhrxqo-TUYi-fDXac3zj_HlmoPsHBMMEEX7Be4Flg0i1FmiINi-MukDAdPac-3JVOXKvmYFe6dQZABqNY-v5MBWbfIJnU-cqfUNUvFKyw)
+[![](https://mermaid.ink/img/pako:eNptjzsOAjEMRK9iud4TpAPBCVZ0aazELBb5ICcp0GrvTvaDRIErz8yTNZ7RZc9o0AUq5SI0KUWboM_mwK2wllXC7u7awFhV0gQcScLfpDXxP4GBc86BKYGUk4-StswmHDCy9iu-l5hX02J9cGSLpq-e9GnRpqVz7eWp8tVLzYrmTqHwgNRqHt_Joana-AsdjxzU8gGAqkwn)](https://mermaid.live/edit#pako:eNptjzsOAjEMRK9iud4TpAPBCVZ0aazELBb5ICcp0GrvTvaDRIErz8yTNZ7RZc9o0AUq5SI0KUWboM_mwK2wllXC7u7awFhV0gQcScLfpDXxP4GBc86BKYGUk4-StswmHDCy9iu-l5hX02J9cGSLpq-e9GnRpqVz7eWp8tVLzYrmTqHwgNRqHt_Joana-AsdjxzU8gGAqkwn)
 
 <br />
 
@@ -378,4 +379,21 @@ async createProduct(name, price, quantity, state, category, info, model) {
 
     await addDoc(colRef, product);
   },
+```
+
+#### Admin can update products.
+
+```javascript
+async updateProduct(id, name, price, quantity, state, category, info, model) {
+    const docRef = doc(db, "products", id);
+    await updateDoc(docRef, {
+      name,
+      price,
+      quantity,
+      state,
+      category,
+      info,
+      model,
+    });
+  }
 ```
