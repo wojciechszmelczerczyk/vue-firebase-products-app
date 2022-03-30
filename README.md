@@ -107,10 +107,14 @@ npm run serve
 
 ### Admin
 
-| Endpoint        | Component  | Authenticated | Action          |
-| :-------------- | :--------- | :-----------: | :-------------- |
-| `/users`        | UsersList  |      \*       | List all users  |
-| `/users/create` | CreateUser |      \*       | Create new user |
+| Endpoint                      | Component      | Authenticated | Action                                           |
+| :---------------------------- | :------------- | :-----------: | :----------------------------------------------- |
+| `/users`                      | UsersList      |      \*       | List all users                                   |
+| `/users/create`               | CreateUser     |      \*       | Create new user                                  |
+| `/manage-products`            | ManageProducts |      \*       | Choose to create or update product               |
+| `/manage-products/create`     | CreateProduct  |      \*       | Create new product                               |
+| `/manage-products/update`     | UpdateProducts |      \*       | List of products which can be deleted or updated |
+| `/manage-products/update/:id` | UpdateProduct  |      \*       | Update product                                   |
 
 <br />
 
