@@ -24,6 +24,8 @@
   - User
 
     - [Login](#login)
+    - [Logout](#logout)
+
     - [Products](#products)
 
   - Admin
@@ -104,6 +106,7 @@ npm run serve
 | `/products`     | ProductsList   |      \*       | Returns all products                |
 | `/products/:id` | ProductDetails |      \*       | Returns info about specific product |
 | `/login`        | Login          |       -       | Login with correct credentials      |
+| `/logout`       | Logout         |      \*       | Logout user                         |
 
 ### Admin
 
@@ -246,6 +249,20 @@ async loginUser(auth, email, password) {
 ```javascript
 const token = res.user.accessToken;
 localStorage.setItem("token", token);
+```
+
+### Logout
+
+#### User can logout.
+
+#### Token will be deleted from browser storage. Then redirect to login page.
+
+```javascript
+localStorage.clear();
+
+const router = useRouter();
+
+router.push("/login");
 ```
 
 ### Products
