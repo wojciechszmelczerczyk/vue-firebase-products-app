@@ -32,6 +32,7 @@
     - [Users](#users)
     - [Create products](#admin-can-create-new-products)
     - [Update products](#admin-can-update-products)
+    - [Delete products](#admin-can-delete-products)
 
 ## Techstack
 
@@ -396,4 +397,13 @@ async updateProduct(id, name, price, quantity, state, category, info, model) {
       model,
     });
   }
+```
+
+#### Admin can delete products.
+
+```javascript
+const deleteProduct = async (id) => {
+  const docRef = doc(db, "products", id);
+  await deleteDoc(docRef);
+};
 ```
