@@ -5,7 +5,9 @@ import {
   query,
   where,
   addDoc,
+  updateDoc,
   onSnapshot,
+  doc,
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
@@ -52,5 +54,24 @@ export default {
       products.push({ ...doc.data(), id: doc.id });
     });
     productsVar.value = products;
+  },
+  async getProductById(product, id) {
+    // intercept document with specific id
+    const docRef = doc(db, "products", id);
+    onSnapshot(docRef, (snapshot) => {
+      product.value = snapshot.data();
+    });
+  },
+  async updateProduct(id, name, price, quantity, state, category, info, model) {
+    const docRef = doc(db, "products", id);
+    await updateDoc(docRef, {
+      name,
+      price,
+      quantity,
+      state,
+      category,
+      info,
+      model,
+    });
   },
 };
