@@ -74,4 +74,17 @@ export default {
       model,
     });
   },
+  async getProductByName(category, search, productsVar, colRef) {
+    if (search.value) {
+      let q = query(colRef, where("name", "==", search.value));
+      const querySnapshot = await getDocs(q);
+      let tmp = [];
+      querySnapshot.docs.forEach((snapshot) => {
+        tmp.push(snapshot.data());
+        productsVar.value = tmp;
+      });
+    } else {
+      await this.getProductsByCategory(category, productsVar, colRef);
+    }
+  },
 };

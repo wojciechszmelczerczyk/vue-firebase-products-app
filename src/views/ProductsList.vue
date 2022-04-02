@@ -11,7 +11,7 @@
       <option value="house">House</option>
       <option value="sport">Sport</option>
     </select>
-    <input class="filter" v-model="search" />
+    <input class="filter" v-model="search" @input="searchProduct" />
   </form>
   <div class="home" v-for="product in products" :key="product.id">
     <router-link :to="{ path: `/products/${product.id}` }">
@@ -27,7 +27,7 @@
 <script setup>
 import ProductService from "../composables/ProductService";
 import { db } from "../firebaseConfig";
-import { onMounted, ref } from "@vue/runtime-core";
+import { onMounted, ref, watchEffect } from "@vue/runtime-core";
 import { collection, deleteDoc, doc } from "firebase/firestore";
 import Navbar from "../components/Navbar";
 import ManageUsersService from "@/composables/admin/ManageUsersService";
@@ -59,9 +59,18 @@ onMounted(async () => {
 });
 
 // query data with specific category
-const fetchDataByCategory = async () => {
+const fetchDataByCategory = async () =>
   await ProductService.getProductsByCategory(
     category,
+    products,
+    productsColRef
+  );
+
+// search product by input
+const searchProduct = async () => {
+  await ProductService.getProductByName(
+    category,
+    search,
     products,
     productsColRef
   );
