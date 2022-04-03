@@ -1,10 +1,10 @@
 <template>
   <form>
     <label>Email: </label>
-    <input type="text" v-model="email" />
+    <input @input="clearErrors" type="text" v-model="email" />
     <div class="email-error">{{ errors.email }}</div>
     <label>Password: </label>
-    <input type="password" v-model="password" />
+    <input @input="clearErrors" type="password" v-model="password" />
     <div class="password-error">{{ errors.password }}</div>
     <button @click="loginUser">Login</button>
   </form>
@@ -38,6 +38,7 @@ const loginUser = async (e) => {
       password.value
     );
     const token = res.user.accessToken;
+
     localStorage.setItem("token", token);
     router.push("/products");
   } catch (err) {
@@ -45,12 +46,19 @@ const loginUser = async (e) => {
     email.value = password.value = "";
     // populate with error message
     if (err.message.includes("email")) {
-      errors.email = err.message;
+      errors.email = "Invalid email";
     } else {
-      errors.password = err.message;
+      errors.password = "Invalid password";
     }
   }
 };
+// clear error messages on input action
+const clearErrors = () => (errors.email = errors.password = "");
 </script>
 
-<style></style>
+<style>
+/* styles for form error messages*/
+div[class$="-error"] {
+  color: red;
+}
+</style>
