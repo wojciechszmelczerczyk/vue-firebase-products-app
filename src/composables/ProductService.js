@@ -77,7 +77,7 @@ export default {
   async getProductByName(category, search, productsVar, colRef) {
     if (search.value) {
       const modifiedList = productsVar.value.filter((prod) =>
-        prod.name.includes(search.value)
+        prod.name.includes(search.value.toLowerCase())
       );
       productsVar.value = modifiedList;
     } else {
