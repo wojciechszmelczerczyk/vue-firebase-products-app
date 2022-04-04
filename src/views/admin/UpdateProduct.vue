@@ -50,6 +50,8 @@ const category = ref(null);
 const info = ref(null);
 const model = ref(null);
 
+let sum;
+
 // product ref
 const product = ref(null);
 
@@ -64,6 +66,7 @@ const updateProduct = async (e) => {
   e.preventDefault();
   await ProductService.updateProduct(
     id,
+    (sum = price.value * quantity.value),
     name.value,
     price.value,
     quantity.value,
