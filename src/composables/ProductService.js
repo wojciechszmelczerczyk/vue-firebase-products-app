@@ -63,13 +63,13 @@ export default {
         return errors.quantity;
       } else if (err.message.includes("Name")) {
         errors.name = err.message;
-        return errors.quantity;
+        return errors.name;
       } else if (err.message.includes("Info")) {
         errors.info = err.message;
-        return errors.quantity;
+        return errors.info;
       } else if (err.message.includes("Model")) {
         errors.model = err.message;
-        return errors.quantity;
+        return errors.model;
       }
     }
   },
@@ -117,19 +117,57 @@ export default {
     state,
     category,
     info,
-    model
+    model,
+    errors
   ) {
-    const docRef = doc(db, "products", id);
-    await updateDoc(docRef, {
-      name,
-      sum,
-      price,
-      quantity,
-      state,
-      category,
-      info,
-      model,
-    });
+    try {
+      if (
+        !isNaN(parseInt(price)) &&
+        !isNaN(parseInt(quantity)) &&
+        isNaN(parseInt(name)) &&
+        isNaN(parseInt(info)) &&
+        isNaN(parseInt(model))
+      ) {
+        const docRef = doc(db, "products", id);
+        await updateDoc(docRef, {
+          name,
+          sum,
+          price,
+          quantity,
+          state,
+          category,
+          info,
+          model,
+        });
+      } else if (isNaN(parseInt(price))) {
+        throw new Error("Price has to be a number");
+      } else if (isNaN(parseInt(quantity))) {
+        throw new Error("Quantity has to be a number");
+      } else if (!isNaN(parseInt(name))) {
+        throw new Error("Name has to be a string");
+      } else if (!isNaN(parseInt(info))) {
+        throw new Error("Info has to be a string");
+      } else if (!isNaN(parseInt(model))) {
+        throw new Error("Model has to be a string");
+      }
+    } catch (err) {
+      if (err.message.includes("Price")) {
+        errors.price = err.message;
+        return errors.price;
+      } else if (err.message.includes("Quantity")) {
+        errors.quantity = err.message;
+        return errors.quantity;
+      } else if (err.message.includes("Name")) {
+        errors.name = err.message;
+        return errors.name;
+      } else if (err.message.includes("Info")) {
+        errors.info = err.message;
+        return errors.info;
+      } else if (err.message.includes("Model")) {
+        errors.model = err.message;
+        return errors.model;
+      }
+    }
   },
   async getProductByName(category, search, productsVar, colRef) {
     if (search.value) {

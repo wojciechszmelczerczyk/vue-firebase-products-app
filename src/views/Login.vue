@@ -1,10 +1,14 @@
 <template>
   <form>
     <label>Email: </label>
-    <input @input="clearErrors" type="text" v-model="email" />
+    <input @input="clearErrors('email')" type="text" v-model="email" />
     <div class="email-error">{{ errors.email }}</div>
     <label>Password: </label>
-    <input @input="clearErrors" type="password" v-model="password" />
+    <input
+      @input="clearErrors('password')"
+      type="password"
+      v-model="password"
+    />
     <div class="password-error">{{ errors.password }}</div>
     <button @click="loginUser">Login</button>
   </form>
@@ -52,8 +56,14 @@ const loginUser = async (e) => {
     }
   }
 };
-// clear error messages on input action
-const clearErrors = () => (errors.email = errors.password = "");
+// clear inputs
+const clearErrors = (p) => {
+  for (let error in errors) {
+    if (error === p) {
+      errors[error] = "";
+    }
+  }
+};
 </script>
 
 <style>

@@ -1,11 +1,17 @@
 <template>
   <form>
     <label>Name: </label>
-    <input v-model="name" />
+    <input @input="clearErrors('name')" v-model="name" />
+    <div class="name-error">{{ errors.name }}</div>
+
     <label>Price: </label>
-    <input v-model="price" />
+    <input @input="clearErrors('price')" v-model="price" />
+    <div class="price-error">{{ errors.price }}</div>
+
     <label>Quantity: </label>
-    <input v-model="quantity" />
+    <input @input="clearErrors('quantity')" v-model="quantity" />
+    <div class="quantity-error">{{ errors.quantity }}</div>
+
     <label>State:</label>
     <select v-model="state">
       <option>ok</option>
@@ -18,16 +24,20 @@
       <option>house</option>
     </select>
     <label>Info: </label>
-    <textarea v-model="info"></textarea>
+    <textarea @input="clearErrors('info')" v-model="info"></textarea>
+    <div class="info-error">{{ errors.info }}</div>
+
     <label>model</label>
-    <input v-model="model" />
+    <input @input="clearErrors('model')" v-model="model" />
+    <div class="model-error">{{ errors.model }}</div>
+
     <button @click="cancel">Cancel</button>
     <button @click="updateProduct">Update product</button>
   </form>
 </template>
 
 <script setup>
-import { onMounted, ref } from "@vue/runtime-core";
+import { onMounted, ref, reactive } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
 import ProductService from "../../composables/ProductService.js";
 import { useRoute } from "vue-router";
@@ -52,6 +62,26 @@ const model = ref(null);
 
 let sum;
 
+// errors
+const errors = reactive({
+  name: null,
+  price: null,
+  quantity: null,
+  state: null,
+  category: null,
+  info: null,
+  model: null,
+});
+
+// clear inputs
+const clearErrors = (p) => {
+  for (let error in errors) {
+    if (error === p) {
+      errors[error] = "";
+    }
+  }
+};
+
 // product ref
 const product = ref(null);
 
@@ -64,7 +94,7 @@ const cancel = (e) => {
 
 const updateProduct = async (e) => {
   e.preventDefault();
-  await ProductService.updateProduct(
+  const error = await ProductService.updateProduct(
     id,
     (sum = price.value * quantity.value),
     name.value,
@@ -73,9 +103,25 @@ const updateProduct = async (e) => {
     state.value,
     category.value,
     info.value,
-    model.value
+    model.value,
+    errors
   );
-  router.push("/products");
+
+  if (error) {
+    if (error.includes("Price")) {
+      errors.price = error;
+    } else if (error.includes("Quantity")) {
+      errors.quantity = error;
+    } else if (error.includes("Name")) {
+      errors.name = error;
+    } else if (error.includes("Info")) {
+      errors.info = error;
+    } else if (error.includes("Model")) {
+      errors.model = error;
+    }
+  } else {
+    router.push("/products");
+  }
 };
 
 onMounted(async () => {

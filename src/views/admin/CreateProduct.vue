@@ -2,15 +2,15 @@
   <Navbar :isAdmin="isAdmin" />
   <form>
     <label>Name: </label>
-    <input v-model="name" />
+    <input @input="clearErrors('name')" v-model="name" />
     <div class="name-error">{{ errors.name }}</div>
 
     <label>Price: </label>
-    <input v-model="price" />
+    <input @input="clearErrors('price')" v-model="price" />
     <div class="price-error">{{ errors.price }}</div>
 
     <label>Quantity: </label>
-    <input v-model="quantity" />
+    <input @input="clearErrors('quantity')" v-model="quantity" />
     <div class="quantity-error">{{ errors.quantity }}</div>
 
     <label>State:</label>
@@ -27,11 +27,11 @@
     </select>
 
     <label>Info: </label>
-    <textarea v-model="info"></textarea>
+    <textarea @input="clearErrors('info')" v-model="info"></textarea>
     <div class="info-error">{{ errors.info }}</div>
 
     <label>model</label>
-    <input v-model="model" />
+    <input @input="clearErrors('model')" v-model="model" />
     <div class="model-error">{{ errors.model }}</div>
 
     <button @click="cancel">Cancel</button>
@@ -59,7 +59,7 @@ const model = ref(null);
 let sum;
 
 // errors
-let errors = reactive({
+const errors = reactive({
   name: "",
   price: "",
   quantity: "",
@@ -110,7 +110,14 @@ const addProduct = async (e) => {
     router.push("/products");
   }
 };
-
+// clear inputs
+const clearErrors = (p) => {
+  for (let error in errors) {
+    if (error === p) {
+      errors[error] = "";
+    }
+  }
+};
 const cancel = (e) => {
   e.preventDefault();
   router.push("/products");

@@ -2,10 +2,14 @@
   <Navbar :isAdmin="isAdmin" />
   <form>
     <label>Email</label>
-    <input @input="clearErrors" v-model="email" />
+    <input @input="clearErrors('email')" v-model="email" />
     <div class="email-error">{{ errors.email }}</div>
     <label>Password</label>
-    <input @input="clearErrors" type="password" v-model="password" />
+    <input
+      @input="clearErrors('password')"
+      type="password"
+      v-model="password"
+    />
     <div class="password-error">{{ errors.password }}</div>
     <router-link :to="{ path: '/users' }">
       <button @click="cancel">Cancel</button>
@@ -63,6 +67,14 @@ const createNewUser = async (e) => {
     }
   }
 };
-const clearErrors = () => (errors.email = errors.password = "");
+
+// clear inputs
+const clearErrors = (p) => {
+  for (let error in errors) {
+    if (error === p) {
+      errors[error] = "";
+    }
+  }
+};
 </script>
 <style></style>
