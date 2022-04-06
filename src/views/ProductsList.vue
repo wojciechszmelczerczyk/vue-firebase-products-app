@@ -3,7 +3,7 @@
   <div v-if="!products">
     <p>Loading...</p>
   </div>
-  <a v-if="isAdmin" href="/products/add">Add product</a>
+  <a class="addProduct" v-if="isAdmin" href="/products/add">Add product</a>
   <form>
     <select v-model="category" @change="fetchDataByCategory">
       <option value="">All</option>
@@ -82,4 +82,8 @@ const deleteProduct = async (id) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+a.addProduct {
+  text-decoration: none;
+}
+</style>
