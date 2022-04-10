@@ -84,6 +84,14 @@ const deleteProduct = async (id) => {
 
 <style scoped>
 a.addProduct {
+  display: block;
   text-decoration: none;
+  font-style: normal;
+  align-self: center;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  padding: 50px 0 68px;
+
 }
 </style>

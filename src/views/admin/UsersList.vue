@@ -1,10 +1,14 @@
 <template>
   <Navbar :isAdmin="isAdmin" />
-  <router-link :to="{ path: '/users/create' }">Create user</router-link>
-  <h1>Users list</h1>
-  <div class="home" v-for="user in users" :key="user.id">
+  <h1 class="usersList">Users list</h1>
+  <router-link :to="{ path: '/users/create' }" class="createButton">Create user</router-link>
+  
+  <div class="usersListHome">
+    <div class="home" v-for="user in users" :key="user.id">
     {{ user.email }}
+    </div>
   </div>
+  
 </template>
 
 <script setup>
@@ -32,4 +36,42 @@ onMounted(async () => {
 });
 </script>
 
-<style></style>
+<style>
+h1.usersList{
+  display: block;
+  font-style: normal;
+  align-self: center;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+}
+a.createButton{
+  display: block;
+  width: 95px;
+  padding: 10px 0;
+  background: #33B04E;
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.usersListHome div.home{
+  align-self: center;
+  line-height: 30px;
+  width: 100%;
+  height: 50px;
+  margin-top: 24px;
+  background: #EEEEEE;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 14px;
+  padding-top: 35px;
+}
+.usersListHome div.home:nth-child(5){
+  margin-bottom: 50px;
+}
+
+</style>
