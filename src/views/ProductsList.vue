@@ -4,15 +4,16 @@
     <p>Loading...</p>
   </div>
   <a class="addProduct" v-if="isAdmin" href="/products/add">Add product</a>
-  <form>
+  <form class="productsForm">
     <select v-model="category" @change="fetchDataByCategory">
-      <option value="">All</option>
+      <option selected="selected" value="">All</option>
       <option value="garden">Garden</option>
       <option value="house">House</option>
       <option value="sport">Sport</option>
     </select>
     <input class="filter" v-model="search" @input="searchProduct" />
   </form>
+<div class="productLists">
   <div class="home" v-for="product in products" :key="product.id">
     <router-link :to="{ path: `/products/${product.id}` }">
       {{ product.name }}/{{ product.price }}/{{ product.quantity }}
@@ -22,6 +23,8 @@
     >
     <button v-if="isAdmin" @click="deleteProduct(product.id)">Delete</button>
   </div>
+</div>
+
 </template>
 
 <script setup>
@@ -91,7 +94,63 @@ a.addProduct {
   font-weight: 400;
   font-size: 36px;
   line-height: 44px;
-  padding: 50px 0 68px;
+  margin: 50px 0 68px;
+  color:#42b983;
+}
+form.productsForm{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 494px;
+}
+form.productsForm select{
+  width: 178px;
+  height: 59px;
+}
+input.filter{
+  width: 311px;
+  height: 59px;
+}
+div.productLists{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 494px;
+  padding: 96px 0 0;
+}
+#app > div > div{
+  display: flex;
+  width: 80%;
+  height: 69px;
+  justify-content: space-between;
+  align-items: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  margin-bottom: 33px;
+  background: #EEEEEE;
+  line-height: 14px;
+  border-radius: 10px;
+  padding-left: 20px;
+}
+#app > div > div > a{
+  text-decoration: none;
+  color: black;
+}
 
+#app > div > div > a:nth-child(2){
+  color: #749CA1;
+}
+#app > div > div > button{
+  width: 125px;
+  height: 69px;
+  border-radius: 10px;
+  background-color: #008000;
+  color: white;
+  font-size: 22px;
+  font-weight: 400;
 }
 </style>

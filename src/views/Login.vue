@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form class="loginForm">
     <h1>Login</h1>
     <div class="emailForm">
       <label>Email: </label>
