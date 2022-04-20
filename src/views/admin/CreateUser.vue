@@ -1,16 +1,20 @@
 <template>
   <Navbar :isAdmin="isAdmin" />
-  <form>
-    <label>Email</label>
-    <input @input="clearErrors('email')" v-model="email" />
-    <div class="email-error">{{ errors.email }}</div>
-    <label>Password</label>
-    <input
+  <form class="loginFormCreateUser">
+    <div class="emailForm">
+      <label>Email</label>
+      <input @input="clearErrors('email')" v-model="email" />
+      <div class="email-error">{{ errors.email }}</div>
+    </div>
+    <div class="passForm">
+      <label>Password</label>
+      <input
       @input="clearErrors('password')"
       type="password"
       v-model="password"
     />
-    <div class="password-error">{{ errors.password }}</div>
+      <div class="password-error">{{ errors.password }}</div>
+    </div>
     <router-link :to="{ path: '/users' }">
       <button @click="cancel">Cancel</button>
     </router-link>
@@ -77,4 +81,54 @@ const clearErrors = (p) => {
   }
 };
 </script>
-<style></style>
+<style>
+form.loginFormCreateUser{
+  height: 422px;
+  border-radius: 10px;
+  background-color: #EEEEEE;
+}
+div.emailForm{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 82px;
+  padding: 0 23% 58px;
+
+}
+div.emailForm label{
+  padding-top: 120px;
+}
+div.emailForm input{
+  min-height: 59px;
+}
+div.passForm label{
+  padding-top: 90px;
+}
+div.passForm input{
+  min-height: 59px;
+}
+
+ button{
+  position: absolute;
+  width: 105px;
+  height: 48px;
+  left: 78%;
+  font-style: normal;
+  margin-top: 92px;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 18px;
+  width: 105px;
+  height: 48px;
+  background-color: #008000;
+  color: white;
+  border-color: #008000;
+} 
+button:nth-child(1){
+  margin-top: 92px;
+  left: 58%;
+  background-color: red;
+  border-color: red;
+}
+</style>

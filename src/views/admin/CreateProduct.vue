@@ -1,39 +1,49 @@
 <template>
   <Navbar :isAdmin="isAdmin" />
-  <form>
-    <label>Name: </label>
-    <input @input="clearErrors('name')" v-model="name" />
-    <div class="name-error">{{ errors.name }}</div>
+  <form class="productForm">
+    <div class="nameForm">
+      <label>Name: </label>
+      <input @input="clearErrors('name')" v-model="name" />
+      <div class="name-error">{{ errors.name }}</div>
+    </div>
+    <div class="priceForm">
+      <label>Price: </label>
+      <input @input="clearErrors('price')" v-model="price" />
+      <div class="price-error">{{ errors.price }}</div>
+    </div>
+    <div class="quantityForm">
+      <label>Quantity: </label>
+      <input @input="clearErrors('quantity')" v-model="quantity" />
+      <div class="quantity-error">{{ errors.quantity }}</div>
+    </div>
 
-    <label>Price: </label>
-    <input @input="clearErrors('price')" v-model="price" />
-    <div class="price-error">{{ errors.price }}</div>
-
-    <label>Quantity: </label>
-    <input @input="clearErrors('quantity')" v-model="quantity" />
-    <div class="quantity-error">{{ errors.quantity }}</div>
-
-    <label>State:</label>
+    <div class="stateForm">
+      <label>State:</label>
     <select v-model="state">
       <option>ok</option>
       <option>damaged</option>
       <option>borrowed</option>
     </select>
-
-    <label>Category</label>
-    <select v-model="category">
-      <option>garden</option>
-      <option>house</option>
+    </div>
+    <div class="categoryForm">
+      <label>Category</label>
+      <select v-model="category">
+        <option>garden</option>
+        <option>house</option>
     </select>
-
+    </div>
+    <div class="infoForm">
     <label>Info: </label>
-    <textarea @input="clearErrors('info')" v-model="info"></textarea>
-    <div class="info-error">{{ errors.info }}</div>
+        <textarea @input="clearErrors('info')" v-model="info"></textarea>
+        <div class="info-error">{{ errors.info }}</div>
+    </div>
+    <div class="modelForm">
+      <label>model</label>
+      <input @input="clearErrors('model')" v-model="model" />
+      <div class="model-error">{{ errors.model }}</div>
+    </div>
 
-    <label>model</label>
-    <input @input="clearErrors('model')" v-model="model" />
-    <div class="model-error">{{ errors.model }}</div>
-
+    
     <button @click="cancel">Cancel</button>
     <button @click="addProduct">Add product</button>
   </form>
@@ -124,4 +134,51 @@ const cancel = (e) => {
 };
 </script>
 
-<style></style>
+<style>
+  form.productForm{
+    min-height: 900px;
+    border-radius: 10px;
+    background-color: #EEEEEE;
+  }
+  div.nameForm, div.priceForm, div.quantityForm, div.stateForm, div.categoryForm, div.infoForm, div.modelForm{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 82px;
+  padding: 0 23% 28px;
+
+}
+div.nameForm label, div.priceForm label, div.quantityForm label, div.stateForm label, div.categoryForm label, div.infoForm label, div.modelForm label{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 4px;
+}
+div.nameForm input, div.priceForm input, div.quantityForm input, div.infoForm textarea, div.modelForm input{
+  width: 311px;
+  height: 59px;
+  border: 1px solid #949494;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+div.stateForm select, div.categoryForm select{
+  width: 311px;
+  height: 25px;
+}
+
+
+
+
+
+form button{
+  margin-top: 62px;
+} 
+form button:nth-of-type(1){
+  margin-top: 62px;
+  left: 58%;
+  background-color: red;
+  border-color: red;
+}
+</style>
