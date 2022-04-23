@@ -44,8 +44,8 @@
     </div>
 
     
-    <button @click="cancel">Cancel</button>
-    <button @click="addProduct">Add product</button>
+    <button class="cancelCreateProduct" @click="cancel">Cancel</button>
+    <button class="addCreateProduct" @click="addProduct">Add product</button>
   </form>
 </template>
 
@@ -167,15 +167,23 @@ div.stateForm select, div.categoryForm select{
   width: 311px;
   height: 25px;
 }
-
-
-
-
-
-form button{
+#app > form >  button.cancelCreateProduct, #app > form > button.addCreateProduct{
+  position: absolute;
+  width: 105px;
+  height: 48px;
+  left: 78%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 18px;
+  width: 105px;
+  height: 48px;
+  background-color: #008000;
+  color: white;
+  border-color: #008000;
   margin-top: 62px;
 } 
-form button:nth-of-type(1){
+#app > form > button.cancelCreateProduct:nth-of-type(1){
   margin-top: 62px;
   left: 58%;
   background-color: red;

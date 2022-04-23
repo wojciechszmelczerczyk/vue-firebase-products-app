@@ -17,7 +17,7 @@
     </div>
     
     <div class="buttonForm">
-      <button @click="loginUser">Login</button>
+      <button class="loginButton" @click="loginUser">Login</button>
     </div>
     
   </form>
@@ -151,7 +151,7 @@ div.buttonForm{
   padding-left: 78%;
 
 }
-div.buttonForm button{
+div.buttonForm button.loginButton{
   display: flex;
   justify-content: center;
   font-style: normal;

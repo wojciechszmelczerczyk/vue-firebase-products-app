@@ -2,12 +2,12 @@
   <Navbar :isAdmin="isAdmin" />
   <form class="loginFormCreateUser">
     <div class="emailForm">
-      <label>Email</label>
+      <label class="createEmail">Email</label>
       <input @input="clearErrors('email')" v-model="email" />
       <div class="email-error">{{ errors.email }}</div>
     </div>
     <div class="passForm">
-      <label>Password</label>
+      <label class="createPass">Password</label>
       <input
       @input="clearErrors('password')"
       type="password"
@@ -16,9 +16,9 @@
       <div class="password-error">{{ errors.password }}</div>
     </div>
     <router-link :to="{ path: '/users' }">
-      <button @click="cancel">Cancel</button>
+      <button class="createButtons" @click="cancel">Cancel</button>
     </router-link>
-    <button @click="createNewUser">Create user</button>
+    <button class="createButtons" @click="createNewUser">Create user</button>
   </form>
 </template>
 
@@ -96,20 +96,19 @@ div.emailForm{
   padding: 0 23% 58px;
 
 }
-div.emailForm label{
+div.emailForm label.createEmail{
   padding-top: 120px;
 }
 div.emailForm input{
   min-height: 59px;
 }
-div.passForm label{
+div.passForm label.createPass{
   padding-top: 90px;
 }
 div.passForm input{
   min-height: 59px;
 }
-
- button{
+button.createButtons{
   position: absolute;
   width: 105px;
   height: 48px;
@@ -125,7 +124,7 @@ div.passForm input{
   color: white;
   border-color: #008000;
 } 
-button:nth-child(1){
+button.createButtons:nth-child(1){
   margin-top: 92px;
   left: 58%;
   background-color: red;
