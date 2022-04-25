@@ -1,38 +1,49 @@
 <template>
-  <form>
-    <label>Name: </label>
-    <input @input="clearErrors('name')" v-model="name" />
-    <div class="name-error">{{ errors.name }}</div>
+  <form class="productForm">
+    <div class="nameForm">
+      <label>Name: </label>
+      <input @input="clearErrors('name')" v-model="name" />
+      <div class="name-error">{{ errors.name }}</div>
+    </div>
+    <div class="priceForm">
+      <label>Price: </label>
+      <input @input="clearErrors('price')" v-model="price" />
+      <div class="price-error">{{ errors.price }}</div>
+    </div>
+    <div class="quantityForm">
+      <label>Quantity: </label>
+      <input @input="clearErrors('quantity')" v-model="quantity" />
+      <div class="quantity-error">{{ errors.quantity }}</div>
+    </div>
+    <div class="stateForm">
+      <label>State:</label>
+      <select v-model="state">
+        <option>ok</option>
+        <option>damaged</option>
+        <option>borrowed</option>
+      </select>
+    </div>
+    <div class="categoryForm">
+      <label>Category</label>
+      <select v-model="category">
+        <option>garden</option>
+        <option>house</option>
+      </select>
+    </div>
+    <div class="infoForm">
+      <label>Info: </label>
+      <textarea @input="clearErrors('info')" v-model="info"></textarea>
+      <div class="info-error">{{ errors.info }}</div>
+    </div>    
+    <div class="modelForm">
+      <label>model</label>
+      <input @input="clearErrors('model')" v-model="model" />
+      <div class="model-error">{{ errors.model }}</div>
+    </div>
+    
 
-    <label>Price: </label>
-    <input @input="clearErrors('price')" v-model="price" />
-    <div class="price-error">{{ errors.price }}</div>
-
-    <label>Quantity: </label>
-    <input @input="clearErrors('quantity')" v-model="quantity" />
-    <div class="quantity-error">{{ errors.quantity }}</div>
-
-    <label>State:</label>
-    <select v-model="state">
-      <option>ok</option>
-      <option>damaged</option>
-      <option>borrowed</option>
-    </select>
-    <label>Category</label>
-    <select v-model="category">
-      <option>garden</option>
-      <option>house</option>
-    </select>
-    <label>Info: </label>
-    <textarea @input="clearErrors('info')" v-model="info"></textarea>
-    <div class="info-error">{{ errors.info }}</div>
-
-    <label>model</label>
-    <input @input="clearErrors('model')" v-model="model" />
-    <div class="model-error">{{ errors.model }}</div>
-
-    <button @click="cancel">Cancel</button>
-    <button @click="updateProduct">Update product</button>
+    <button class="cancelUpdateProduct" @click="cancel">Cancel</button>
+    <button class="addUpdateProduct" @click="updateProduct">Update product</button>
   </form>
 </template>
 
@@ -138,4 +149,27 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+#app > form >  button.cancelUpdateProduct, #app > form > button.addUpdateProduct{
+  position: absolute;
+  width: 105px;
+  height: 48px;
+  left: 78%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 18px;
+  width: 105px;
+  height: 48px;
+  background-color: #008000;
+  color: white;
+  border-color: #008000;
+  margin-top: 62px;
+} 
+#app > form > button.cancelUpdateProduct:nth-of-type(1){
+  margin-top: 62px;
+  left: 58%;
+  background-color: red;
+  border-color: red;
+}
+</style>

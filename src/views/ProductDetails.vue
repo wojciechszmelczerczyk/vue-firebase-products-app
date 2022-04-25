@@ -1,11 +1,15 @@
 <template>
   <Navbar :isAdmin="isAdmin" />
+  <h1 class="productsDetails">Products Details</h1>
   <div v-if="!product">
     <p>Loading...</p>
   </div>
-  <div class="about" v-for="value in product" :key="value">
+  <div class="detailsListAbout">
+    <div class="about" v-for="value in product" :key="value">
     <span>{{ value }}</span>
   </div>
+  </div>
+  
 </template>
 
 <script setup>
@@ -42,4 +46,27 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+h1.productsDetails{
+  display: block;
+  font-style: normal;
+  align-self: center;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+}
+.detailsListAbout div.about{
+  align-self: center;
+  line-height: 30px;
+  width: 100%;
+  height: 50px;
+  margin-top: 24px;
+  background: #EEEEEE;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 14px;
+  padding-top: 35px;
+}
+
+</style>
